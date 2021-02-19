@@ -12,6 +12,7 @@ public class Greedy4 {
         int count = 0;
 
         while ( n > 1 ) {
+
             if(n % k == 0) {
                 n = n / k;
             } else {
