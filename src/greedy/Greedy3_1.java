@@ -11,20 +11,20 @@ public class Greedy3_1 {
         int m = sc.nextInt();
 
         int[][] arr = new int[n][m];
-        for(int i=0; i<n; i++) {
-            for(int j=0; j<m; j++){
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
                 arr[i][j] = sc.nextInt();
             }
         }
 
         int[] minArray = new int[n];
-        for(int i=0; i<arr.length; i++) {
+        for (int i = 0; i < arr.length; i++) {
             Arrays.sort(arr[i]);
             minArray[i] = arr[i][0];
         }
 
         Arrays.sort(minArray);
 
-        System.out.println(minArray[minArray.length-1]);
+        System.out.println(minArray[minArray.length - 1]);
     }
 }
