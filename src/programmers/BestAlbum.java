@@ -28,7 +28,7 @@ public class BestAlbum {
         HashMap<Integer, Integer> tempPlayMap = new HashMap<>();
         List<Integer> finalPlayList = new ArrayList<>();
 
-        Loop1 :
+        Loop1:
         for(String genresKey : genresKeySetList) {
 
             Loop2:
