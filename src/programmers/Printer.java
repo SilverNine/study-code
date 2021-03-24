@@ -1,58 +1,62 @@
 package programmers;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Printer {
-    public static void main(String[] args) {
-        Printer printer = new Printer();
 
-        System.out.println(printer.solution(new int[]{2,1,3,2}, 2));
-        System.out.println(printer.solution(new int[]{1,1,9,1,1,1}, 0));
+  public static void main(String[] args) {
+    Printer printer = new Printer();
+
+    System.out.println(printer.solution(new int[]{2, 1, 3, 2}, 2));
+    System.out.println(printer.solution(new int[]{1, 1, 9, 1, 1, 1}, 0));
+  }
+
+  public int solution(int[] priorities, int location) {
+    Queue<Print> printQueue = new LinkedList<>();
+
+    for (int i = 0; i < priorities.length; i++) {
+      printQueue.offer(new Print(priorities[i], i));
     }
 
-    class Print {
-        int priotiry;
-        int location;
+    int order = 0;
+    while (true) {
+      Boolean existsPriority = false;
 
-        Print(int priotiry, int location) {
-            this.priotiry = priotiry;
-            this.location = location;
+      Iterator iterator = printQueue.iterator();
+      while (iterator.hasNext()) {
+        Print print = (Print) iterator.next();
+        if (printQueue.peek().priotiry < print.priotiry) {
+          existsPriority = true;
+          break;
         }
+      }
+
+      if (existsPriority) {
+        printQueue.offer(printQueue.poll());
+        continue;
+      }
+
+      Print exitPrint = printQueue.poll();
+      order++;
+
+      if (exitPrint.location == location) {
+        break;
+      }
     }
 
-    public int solution(int[] priorities, int location) {
-        Queue<Print> printQueue = new LinkedList<>();
+    return order;
+  }
 
-        for(int i=0; i<priorities.length; i++){
-            printQueue.offer(new Print(priorities[i], i));
-        }
+  class Print {
 
-        int order = 0;
-        while ( true ) {
-            Boolean existsPriority = false;
+    int priotiry;
+    int location;
 
-            Iterator iterator = printQueue.iterator();
-            while(iterator.hasNext()){
-                Print print = (Print) iterator.next();
-                if(printQueue.peek().priotiry < print.priotiry) {
-                    existsPriority = true;
-                    break;
-                }
-            }
-
-            if(existsPriority) {
-                printQueue.offer(printQueue.poll());
-                continue;
-            }
-
-            Print exitPrint = printQueue.poll();
-            order++;
-
-            if(exitPrint.location == location) {
-                break;
-            }
-        }
-
-        return order;
+    Print(int priotiry, int location) {
+      this.priotiry = priotiry;
+      this.location = location;
     }
+  }
 }
