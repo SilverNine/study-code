@@ -35,8 +35,7 @@ public class Frog {
             isVisited[i] = false;
         }
 
-        Status status = new Status(nums[0], 0);
-        queue.add(status);
+        queue.add(new Status(nums[0], 0));
 
         while (!queue.isEmpty()) {
             count++;
@@ -49,8 +48,7 @@ public class Frog {
                 int leftTarget = now.index - now.num;
 
                 if (rightTarget == nums.length - 1) {
-                    answer = count;
-                    break;
+                    return count;
                 }
 
                 if (leftTarget > 0 // 왼쪽 타겟이 0보다 커야 한다.
@@ -61,7 +59,7 @@ public class Frog {
                     queue.add(new Status(nums[leftTarget], leftTarget));
                 }
 
-                if (rightTarget < nums.length // 오른쪽 타겟이 전체 길이보다 작아야 한다.
+                if (rightTarget < nums.length - 1 // 오른쪽 타겟이 전체 길이보다 작아야 한다.
                     && !isVisited[rightTarget] // 이동할 지점이 방문하지 않았어야 한다.
                     && nums[rightTarget] > 0 // 이동할 지점이 0보다 커야 의미가 있다.
                 ) {
