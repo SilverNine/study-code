@@ -25,10 +25,6 @@ public class Frog2 {
     }
 
     public int solution(int[] nums) {
-        if (nums[0] == 0) {
-            return -1;
-        }
-
         int answer = -1;
         int count = 0;
 
