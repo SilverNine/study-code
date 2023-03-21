@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 
 public class p15953 {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
         int inputLength = scan.nextInt();
